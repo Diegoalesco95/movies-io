@@ -1,17 +1,39 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h1>Last Movies</h1>
+      </ion-col>
+      <ion-col>
+        <app-slideshow-backdrop
+          *ngIf="!!movies.length"
+          [movies]="movies"
+        ></app-slideshow-backdrop>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h1>Currently Presenting</h1>
+      </ion-col>
+      <ion-col>
+        <app-slideshow-poster
+          *ngIf="!!movies.length"
+          [movies]="movies"
+        ></app-slideshow-poster
+      ></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h1>Popular Movies</h1>
+      </ion-col>
+      <ion-col>
+        <app-slideshow-poster
+          *ngIf="!!popularMovies.length"
+          [movies]="popularMovies"
+          [withLoadMore]="true"
+          (loadMore)="onLoadMore()"
+        ></app-slideshow-poster
+      ></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
