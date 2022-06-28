@@ -5,6 +5,7 @@ import {
   MovieCredits,
   MovieDetails,
   MoviesResponse,
+  SearchResponse,
 } from 'src/app/models/movies.models';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -19,6 +20,7 @@ export class MoviesService {
   private uri = Object.freeze({
     discover: '/discover/movie',
     details: '/movie/',
+    search: '/search/movie',
   });
   private popularsPage = 0;
 
@@ -86,6 +88,16 @@ export class MoviesService {
   getMovieCredits(movieId: number) {
     return this.executeQuery<MovieCredits>(
       `${this.uri.details}${movieId}/credits`
+    );
+  }
+
+  searchMovies(query: string) {
+    return this.executeQuery<SearchResponse>(this.uri.search, {
+      query,
+    }).pipe(
+      map(({ results }) => {
+        return results;
+      })
     );
   }
 }

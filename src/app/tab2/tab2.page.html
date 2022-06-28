@@ -1,17 +1,57 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-title> Search Movies </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-toolbar>
+  <ion-searchbar
+    animated
+    debounce="700"
+    [value]="textToSearch"
+    (ionChange)="search($event)"
+    placeholder="Search Movie"
+  ></ion-searchbar>
+</ion-toolbar>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-content>
+  <ion-grid fixed *ngIf="isLoading">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-spinner name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="movies.length === 0">
+    <ion-list-header>
+      <ion-label>Suggestions</ion-label>
+    </ion-list-header>
+    <ion-item
+      *ngFor="let suggestion of suggestions"
+      (click)="onSelect(suggestion)"
+    >
+      <ion-label color="primary">
+        <h2>{{ suggestion }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6" *ngFor="let movie of movies">
+        <ion-card (click)="onViewDetails(movie.id)">
+          <ion-img [src]="movie.poster_path | image"></ion-img>
+
+          <ion-card-header>
+            <ion-card-subtitle>{{movie.release_date}}</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            <h2>{{movie.title}}</h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

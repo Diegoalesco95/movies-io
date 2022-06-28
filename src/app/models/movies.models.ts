@@ -116,3 +116,15 @@ export enum Department {
   VisualEffects = 'Visual Effects',
   Writing = 'Writing',
 }
+
+export interface SearchResponse {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
+}
+
+export enum OriginalLanguage {
+  En = 'en',
+  It = 'it',
+}
