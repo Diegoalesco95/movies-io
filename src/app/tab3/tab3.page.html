@@ -1,17 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>Favorites</h1>
+      </ion-col>
+    </ion-row>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    <ion-row *ngFor="let genre of moviesByGenre | keyvalue">
+      <ion-col size="12">
+        <ion-label>{{genre.key}}</ion-label>
+      </ion-col>
+      <ion-col *ngIf="genre.value.length > 0">
+        <app-slideshow-poster [movies]="genre.value"></app-slideshow-poster>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

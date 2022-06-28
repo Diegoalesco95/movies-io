@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import {
+  GenresResponse,
   MovieCredits,
   MovieDetails,
   MoviesResponse,
@@ -97,6 +98,14 @@ export class MoviesService {
     }).pipe(
       map(({ results }) => {
         return results;
+      })
+    );
+  }
+
+  getGenres() {
+    return this.executeQuery<GenresResponse>('/genre/movie/list').pipe(
+      map(({ genres }) => {
+        return genres;
       })
     );
   }

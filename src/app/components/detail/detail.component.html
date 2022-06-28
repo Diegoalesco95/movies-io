@@ -95,9 +95,12 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button (click)="onFavorite()">
+      <ion-button (click)="onToggleFavorite()">
         <ion-label>Favorite</ion-label>
-        <ion-icon slot="end" name="star-outline"></ion-icon>
+        <ion-icon
+          slot="end"
+          [name]="movieIsFavorite ? 'star' : 'star-outline'"
+        ></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

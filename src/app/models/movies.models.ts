@@ -1,18 +1,18 @@
 export interface Movie {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: Date;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
+  adult?: boolean;
+  backdrop_path?: string;
+  genre_ids?: number[];
+  id?: number;
+  original_language?: string;
+  original_title?: string;
+  overview?: string;
+  popularity?: number;
+  poster_path?: string;
+  release_date?: Date;
+  title?: string;
+  video?: boolean;
+  vote_average?: number;
+  vote_count?: number;
 }
 
 export interface MoviesResponse {
@@ -22,32 +22,19 @@ export interface MoviesResponse {
   total_results: number;
 }
 
-export interface MovieDetails {
-  adult?: boolean;
-  backdrop_path?: string;
+export interface MovieDetails extends Movie {
   belongs_to_collection?: BelongsToCollection;
   budget?: number;
   genres?: Genre[];
   homepage?: string;
-  id?: number;
   imdb_id?: string;
-  original_language?: string;
-  original_title?: string;
-  overview?: string;
-  popularity?: number;
-  poster_path?: string;
   production_companies?: ProductionCompany[];
   production_countries?: ProductionCountry[];
-  release_date?: Date;
   revenue?: number;
   runtime?: number;
   spoken_languages?: SpokenLanguage[];
   status?: string;
   tagline?: string;
-  title?: string;
-  video?: boolean;
-  vote_average?: number;
-  vote_count?: number;
 }
 
 export interface BelongsToCollection {
@@ -127,4 +114,13 @@ export interface SearchResponse {
 export enum OriginalLanguage {
   En = 'en',
   It = 'it',
+}
+
+export interface GenresResponse {
+  genres: Genre[];
+}
+
+export interface Genre {
+  id: number;
+  name: string;
 }

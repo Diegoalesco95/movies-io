@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Movie } from 'src/app/models/movies.models';
+import { Movie, MovieDetails } from 'src/app/models/movies.models';
 import { DetailComponent } from 'src/app/components/detail/detail.component';
 
 @Component({
@@ -15,7 +15,7 @@ export class SlideshowPosterComponent implements OnInit {
     spaceBetween: -10,
   };
 
-  @Input() movies: Movie[];
+  @Input() movies: MovieDetails[];
   @Input() withLoadMore: boolean = false;
 
   @Output() loadMore = new EventEmitter();
