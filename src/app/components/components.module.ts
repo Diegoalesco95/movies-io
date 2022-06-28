@@ -4,12 +4,21 @@ import { IonicModule } from '@ionic/angular';
 
 import { PipesModule } from 'src/app/pipes/pipes.module';
 
+import { DetailComponent } from './detail/detail.component';
 import { SlideshowBackdropComponent } from './slideshow-backdrop/slideshow-backdrop.component';
 import { SlideshowPosterComponent } from './slideshow-poster/slideshow-poster.component';
 
 @NgModule({
-  declarations: [SlideshowBackdropComponent, SlideshowPosterComponent],
+  declarations: [
+    DetailComponent,
+    SlideshowBackdropComponent,
+    SlideshowPosterComponent,
+  ],
   imports: [CommonModule, IonicModule.forRoot(), PipesModule],
-  exports: [SlideshowBackdropComponent, SlideshowPosterComponent],
+  exports: [
+    DetailComponent,
+    SlideshowBackdropComponent,
+    SlideshowPosterComponent,
+  ],
 })
 export class ComponentsModule {}

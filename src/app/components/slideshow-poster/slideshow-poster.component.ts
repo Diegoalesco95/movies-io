@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Movie } from 'src/app/models/movies.models';
+import { DetailComponent } from 'src/app/components/detail/detail.component';
 
 @Component({
   selector: 'app-slideshow-poster',
@@ -18,11 +20,22 @@ export class SlideshowPosterComponent implements OnInit {
 
   @Output() loadMore = new EventEmitter();
 
-  constructor() {}
+  constructor(private modalCtrl: ModalController) {}
 
   ngOnInit() {}
 
   onLoadMore() {
     this.loadMore.emit();
+  }
+
+  async showDetail(movieId: number) {
+    const modal = await this.modalCtrl.create({
+      component: DetailComponent,
+      componentProps: {
+        movieId,
+      },
+    });
+
+    modal.present();
   }
 }
